@@ -32,10 +32,11 @@
 						if($operation[1] == '0x8000..'){
 							$opst  ='Vendor Reserved';                    
 						} 
-						//$output.='.OperationalStatus '."$opst";
+					
 					}           
 				}
-				echo $bc_name.".BCOperationalStatus ".$opst."\n";
+				//echo $bc_name.".BCOperationalStatus ".$opst."\n";
+				echo $bc_name.".BCOperationalStatus ".$operation[1]."\n";
 			}
         }
 		
@@ -66,11 +67,10 @@
 						if($operation[1] == '0x8000..'){
 							$opst  ='Vendor Reserved';                    
 						} 
-						//$output.='.OperationalStatus '."$opst";
 					}
 				}
-				//echo "$output\n\n";
-				echo $bc_name.".BVOperationalStatus ".$opst."\n";
+				//echo $bc_name.".BVOperationalStatus ".$opst."\n";
+				echo $bc_name.".BVOperationalStatus ".$operation[1]."\n";
 			}
         }
 		
@@ -109,8 +109,8 @@
 						$output.="$port[1]\n";                               
 					}  
 				}
-				//echo "$output$output2\n\n";
-				echo $nodename."_".$fc_port_id[1].".FCOperationalStatus ".$opst."\n";
+				//echo $nodename."_".$fc_port_id[1].".FCOperationalStatus ".$opst."\n";
+				echo $nodename."_".$fc_port_id[1].".FCOperationalStatus ".$operation[1]."\n";
 			}
         }
 		
@@ -135,8 +135,8 @@
 						$output ="$apps_temp".'.NativeStatus '."$natst";
 					}          
 				}
-				//echo "$output\n\n";
-				echo $apps_temp.".NodeStatus ".$natst."\n";
+				//echo $apps_temp.".NodeStatus ".$natst."\n";
+				echo $apps_temp.".NodeStatus ".$native[1]."\n";
 			}
         }
 		
@@ -179,7 +179,8 @@
 					} 
 				}
 
-				echo $elementName.".VDOperationalStatus ".$opst."\n";
+				//echo $elementName.".VDOperationalStatus ".$opst."\n";
+				echo $elementName.".VDOperationalStatus ".$operation[1]."\n";
 			}
         }
 		
@@ -288,7 +289,12 @@
 								if ($found_instance_id && (preg_match("/^State/i", trim($singleProperty)))) {
 									$temp_value = explode('=',$singleProperty);
 									$host_status = str_replace('"', '',trim($temp_value[1]));
-									echo $host_name.".HostStatus ".$host_status."\n";
+									
+									if (preg_match("/active/i", trim($singleProperty))) { 
+										echo $host_name.".HostStatus 1\n";
+									} else {
+										echo $host_name.".HostStatus 0\n";
+									}
 									break;
 								}
 							}

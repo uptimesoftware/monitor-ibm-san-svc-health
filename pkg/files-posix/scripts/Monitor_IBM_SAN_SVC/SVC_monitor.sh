@@ -1,6 +1,6 @@
 #!/bin/sh
 
-inst=/usr/local/uptime
+inst=/opt/uptime
 MIBDIRS=$inst/mibs
 export MIBDIRS
 
