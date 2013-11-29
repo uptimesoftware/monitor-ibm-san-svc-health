@@ -8,7 +8,7 @@
     <elements>
 		<element name="process" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
 			<control_options> size:40 </control_options>
-			<default_value>scripts/Monitor_IBM_SAN_SVC/SVC_monitor.sh</default_value>
+			<default_value>scripts/Monitor_IBM_SAN_SVC/SVC_monitor.bat</default_value>
 			<short_description>Script Name</short_description>
 			<long_description>Name of the script/binary/process to be executed by up.time </long_description>
 			<validation_rule><alphanumeric/></validation_rule>
@@ -22,8 +22,8 @@
             <default_value/>
             <short_description>CIM Username</short_description>
             <long_description>CIM Username</long_description>
-            <validation_rule/>
-            <error_message/>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
             <gui_type>
                 <string/>
             </gui_type>
@@ -34,8 +34,8 @@
             <default_value/>
             <short_description>CIM Password</short_description>
             <long_description>CIM Password</long_description>
-            <validation_rule/>
-            <error_message/>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
             <gui_type>
                 <password/>
             </gui_type>
@@ -46,6 +46,47 @@
             <default_value>5989</default_value>
             <short_description>CIM Port</short_description>
             <long_description>CIM Port</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
+		
+		<element name="controllerStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>Controller Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		
+		<element name="controllerFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>Controller Filter</short_description>
+            <long_description>Controller Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="controllerFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>Controller Filter String</short_description>
+            <long_description>Controller Filter String</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
@@ -53,14 +94,17 @@
             </gui_type>
         </element>
 		
+		
+		
 		<element name="BCOperationalStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
             <control_options>size:8</control_options>
             <default_value/>
-            <short_description>Backend Controller Status</short_description>
-            <long_description>Backend Controller Status</long_description>
+            <short_description>Controller Status</short_description>
+            <long_description>Controller Status</long_description>
             <validation_rule/>
             <error_message/>
             <gui_type>
+				<decimal/>
             </gui_type>
         </element>		
 		<element name="BVOperationalStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
@@ -71,6 +115,7 @@
             <validation_rule/>
             <error_message/>
             <gui_type>
+				<decimal/>
             </gui_type>
         </element>
 		<element name="FCOperationalStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
@@ -81,6 +126,7 @@
             <validation_rule/>
             <error_message/>
             <gui_type>
+				<decimal/>
             </gui_type>
         </element>
 		<element name="NodeStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
@@ -91,6 +137,7 @@
             <validation_rule/>
             <error_message/>
             <gui_type>
+				<decimal/>
             </gui_type>
         </element>
 		<element name="VDOperationalStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
@@ -101,6 +148,7 @@
             <validation_rule/>
             <error_message/>
             <gui_type>
+				<decimal/>
             </gui_type>
         </element>
 		<element name="HostStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
@@ -111,6 +159,7 @@
             <validation_rule/>
             <error_message/>
             <gui_type>
+				<decimal/>
             </gui_type>
         </element>
 		<element name="SPOperationalStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
