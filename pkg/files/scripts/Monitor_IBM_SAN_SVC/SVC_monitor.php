@@ -82,9 +82,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 	
 		// Backend Controller
         $cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_BackendController";    
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
         
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
-        $result=shell_exec("type IBMTSSVC_BackendController.txt");    
 		$controllerAlert = array();
 		if ($controllerStatusFilter == "Include") {
 			$tmpControllerIncludeList = explode(',', $controllerFilterString);
@@ -153,9 +152,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 				
 		// Backend Volume 
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_BackendVolume";    
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
-        //$result=shell_exec("type IBMTSSVC_BackendControllerForVolume.txt");
-		$result=shell_exec("type testOutput.txt | findstr \"\/root\/ibm:IBMTSSVC_BackendVolume.CreationClassName\"");  
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
+		//$result=shell_exec("type testOutput.txt | findstr \"\/root\/ibm:IBMTSSVC_BackendVolume.CreationClassName\"");  
 
 		$volumeAlert = array();
 		if ($volumeStatusFilter == "Include") {
@@ -225,8 +223,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 		
 		//FC Port
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_FCPort";          
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");
-        $result=shell_exec("type IBMTSSVC_FCPort.txt");
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");
+        //$result=shell_exec("type IBMTSSVC_FCPort.txt");
 		
 		$fcAlert = array();
 		if ($fcStatusFilter == "Include") {
@@ -303,8 +301,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 		
 		//Node
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_Node";       
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");   
-        $result=shell_exec("type testOutput.txt | findstr \"ibm:IBMTSSVC_Node\"");   
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");   
+        //$result=shell_exec("type testOutput.txt | findstr \"ibm:IBMTSSVC_Node\"");   
 
 		$nodeAlert = array();
 		if ($nodeStatusFilter == "Include") {
@@ -369,8 +367,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 		
 		// Vdisk Status
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_StorageVolume";    
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
-		$result=shell_exec("type testOutput.txt | findstr \"\/root\/ibm:IBMTSSVC_StorageVolume.CreationClassName\"");  
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
+		//$result=shell_exec("type testOutput.txt | findstr \"\/root\/ibm:IBMTSSVC_StorageVolume.CreationClassName\"");  
 
 		$vdiskAlert = array();
 		if ($vdiskStatusFilter == "Include") {
@@ -448,8 +446,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 		
 		// Storage Pool Capacity
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_ConcreteStoragePool";    
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
-		$result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_ConcreteStoragePool.CreationClassName\"");  
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
+		//$result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_ConcreteStoragePool.CreationClassName\"");  
 
 		
 		$spAlert = array();
@@ -560,8 +558,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 		// Host Status
 		//   Get Host Names
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_ProtocolController";    
-        //$result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
-		$result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_ProtocolController\"");  
+        $result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
+		//$result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_ProtocolController\"");  
 		
 		$hostAlert = array();
 		if ($hostAlert == "Include") {
@@ -577,8 +575,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 		//   Get Host Status
 		$host_status_cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_StorageHardwareID";
-		//$host_status_result=shell_exec("wbemcli -noverify ei '$host_status_cmd_str'");    
-		$host_status_result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_StorageHardwareID\"");  
+		$host_status_result=shell_exec("wbemcli -noverify ei '$host_status_cmd_str'");    
+		//$host_status_result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_StorageHardwareID\"");  
 		//Debug
 		//$host_status_result=shell_exec("type StorageHardwareID.txt");		
 		$hostStatusList = explode("\n",$host_status_result);
