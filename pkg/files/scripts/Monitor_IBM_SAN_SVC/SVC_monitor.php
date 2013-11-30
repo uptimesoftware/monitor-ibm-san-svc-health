@@ -128,15 +128,15 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 				} 
 				elseif ($controllerStatusFilter == "Include") {
 
-					if (in_array($bc_name, $includeList)) {
+					if (in_array($bc_name, $controllerIncludeList)) {
 						echo $bc_name.".BCOperationalStatus ".$operation[1]."\n";
 
 						$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
 						
 						// Remove value from array so we know what we haven't found yet
-						$indexFound = array_search($bc_name, $includeList);
-						unset($includeList[$indexFound]);
-						$includeList = array_values($includeList);
+						$indexFound = array_search($bc_name, $controllerIncludeList);
+						unset($controllerIncludeList[$indexFound]);
+						$controllerIncludeList = array_values($controllerIncludeList);
 						
 					}
 				}
@@ -435,8 +435,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 						
 					}
 				}
-				elseif ($vdiskStatusFilter == "Exclude") {
-					if (!in_array($elementName, $vdiskIncludeList)) {
+				elseif ($vdiskStatusFilter == "Exclude") {//plui
+					if (!in_array($elementName, $vdiskExcludeList)) {
 						echo $elementName.".VDOperationalStatus ".$operation[1]."\n";
 						$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
 					}
