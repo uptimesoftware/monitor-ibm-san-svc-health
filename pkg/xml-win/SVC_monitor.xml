@@ -64,7 +64,6 @@
 				<boolean/>
 			</gui_type>
 		</element>
-		
 		<element name="controllerFilterOption" parameter_type="input" data_type="string" gui_basic="1"
 				range_type="0" units="">
             <control_options>size:8</control_options>
@@ -94,6 +93,249 @@
             </gui_type>
         </element>
 		
+		
+		<element name="volumeStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>Volume Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		<element name="volumeFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>Volume Filter</short_description>
+            <long_description>Volume Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="volumeFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>Volume Filter String</short_description>
+            <long_description>Volume Filter String</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
+		
+		
+		<element name="fcStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>FC Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		<element name="fcFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>FC Filter</short_description>
+            <long_description>FC Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="fcFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>FC Filter String</short_description>
+            <long_description>FC Filter String</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
+		
+		
+		<element name="nodeStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>Node Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		<element name="nodeFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>Node Filter</short_description>
+            <long_description>Node Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="nodeFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>Node Filter String</short_description>
+            <long_description>Node Filter String</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
+		
+		<element name="vdiskStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>VDisk Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		<element name="vdiskFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>VDisk Filter</short_description>
+            <long_description>VDisk Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="vdiskFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>VDisk Filter String</short_description>
+            <long_description>VDisk Filter String</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
+		
+		<element name="hostStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>Host Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		<element name="hostFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>Host Filter</short_description>
+            <long_description>Host Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="hostFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>Host Filter String</short_description>
+            <long_description>Host Filter String</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
+		
+		
+		<element name="spStatusCheck" parameter_type="input" data_type="boolean" gui_basic="1" range_type="0">
+			<control_options></control_options>
+			<default_value>true</default_value>
+			<short_description>Storage Pool Status Check</short_description>
+			<long_description>Alert if operational status changes</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<boolean/>
+			</gui_type>
+		</element>
+		<element name="spFilterOption" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:8</control_options>
+            <default_value>None</default_value>
+            <short_description>Storage Pool Filter</short_description>
+            <long_description>Storage Pool Filter</long_description>
+            <validation_rule><alphanumeric/></validation_rule>
+            <error_message><alphanumeric>required field</alphanumeric></error_message>
+            <gui_type>
+                <single_select type="dropdown">
+                    <value>None</value>
+                    <value>Include</value>
+                    <value>Exclude</value>
+                </single_select>
+            </gui_type>
+        </element>
+		<element name="spFilterString" parameter_type="input" data_type="string" gui_basic="1"
+				range_type="0" units="">
+            <control_options>size:40</control_options>
+            <default_value/>
+            <short_description>Storage Pool Filter String</short_description>
+            <long_description>Storage Pool Filter String</long_description>
+            <validation_rule/>
+            <error_message/>
+            <gui_type>
+                <string/>
+            </gui_type>
+        </element>
 		
 		
 		<element name="BCOperationalStatus" parameter_type="output" data_type="ranged" gui_basic="1" range_type="0" units="">
