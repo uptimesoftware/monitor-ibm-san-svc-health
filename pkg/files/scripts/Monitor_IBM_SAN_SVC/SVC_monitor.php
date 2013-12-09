@@ -1,5 +1,6 @@
 <?php
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+//error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+	error_reporting(E_ERROR );
     
 	// Operational Status - array 
 	//		Unknown 0						Stopping 9
