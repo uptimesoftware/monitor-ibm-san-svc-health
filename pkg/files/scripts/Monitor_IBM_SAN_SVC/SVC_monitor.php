@@ -84,6 +84,7 @@
 		// Backend Controller
         $cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_BackendController";    
         $result=shell_exec("wbemcli -noverify ei '$cmd_str'");    
+		//$result=shell_exec("type IBMTSSVC_BackendController.txt");    
         
 		$controllerAlert = array();
 		if ($controllerStatusFilter == "Include") {
@@ -125,26 +126,32 @@
 				// No Filter
 				if($controllerStatusFilter == "None") {
 					echo $bc_name.".BCOperationalStatus ".$operation[1]."\n";
-					$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					if($controllerStatusCheck == "true") {
+						$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					}
 				} 
 				elseif ($controllerStatusFilter == "Include") {
 
 					if (in_array($bc_name, $controllerIncludeList)) {
 						echo $bc_name.".BCOperationalStatus ".$operation[1]."\n";
-
-						$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($controllerStatusCheck == "true") {
+							$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 						
 						// Remove value from array so we know what we haven't found yet
 						$indexFound = array_search($bc_name, $controllerIncludeList);
 						unset($controllerIncludeList[$indexFound]);
 						$controllerIncludeList = array_values($controllerIncludeList);
-						
+												
 					}
 				}
 				elseif ($controllerStatusFilter == "Exclude") {
 					if (!in_array($bc_name, $controllerExcludeList)) {
 						echo $bc_name.".BCOperationalStatus ".$operation[1]."\n";
-						$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						
+						if($controllerStatusCheck == "true") {
+							$controllerAlert = checkOpStatus($bc_name,$operation[1],$op_status,$controllerAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 					}
 				}
 			}
@@ -197,14 +204,17 @@
 				// No Filter
 				if($volumeStatusFilter == "None") {
 					echo $bc_name.".BVOperationalStatus ".$operation[1]."\n";
-					$volumeAlert = checkOpStatus($bc_name,$operation[1],$op_status,$volumeAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					if($volumeStatusCheck == "true") {
+						$volumeAlert = checkOpStatus($bc_name,$operation[1],$op_status,$volumeAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					}
 				} 
 				elseif ($volumeStatusFilter == "Include") {
 
 					if (in_array($bc_name, $volumeIncludeList)) {
 						echo $bc_name.".BVOperationalStatus ".$operation[1]."\n";
-
-						$volumeAlert = checkOpStatus($bc_name,$operation[1],$op_status,$volumeAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($volumeStatusCheck == "true") {
+							$volumeAlert = checkOpStatus($bc_name,$operation[1],$op_status,$volumeAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 						
 						// Remove value from array so we know what we haven't found yet
 						$indexFound = array_search($bc_name, $volumeIncludeList);
@@ -216,7 +226,9 @@
 				elseif ($volumeStatusFilter == "Exclude") {
 					if (!in_array($bc_name, $volumeExcludeList)) {
 						echo $bc_name.".BVOperationalStatus ".$operation[1]."\n";
-						$volumeAlert = checkOpStatus($bc_name,$operation[1],$op_status,$volumeAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($volumeStatusCheck == "true") {
+							$volumeAlert = checkOpStatus($bc_name,$operation[1],$op_status,$volumeAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 					}
 				}
 			}
@@ -225,7 +237,7 @@
 		//FC Port
 		$cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_FCPort";          
         $result=shell_exec("wbemcli -noverify ei '$cmd_str'");
-        //$result=shell_exec("type IBMTSSVC_FCPort.txt");
+        //$result=shell_exec("type IBMTSSVC_FCPort.txt");		
 		
 		$fcAlert = array();
 		if ($fcStatusFilter == "Include") {
@@ -275,14 +287,17 @@
 				// No Filter
 				if($fcStatusFilter == "None") {
 					echo $nodename."_".$fc_port_id[1].".FCOperationalStatus ".$operation[1]."\n";
-					$fcAlert = checkOpStatus($nodename."_".$fc_port_id[1],$operation[1],$op_status,$fcAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					if($fcStatusCheck == "true") {
+						$fcAlert = checkOpStatus($nodename."_".$fc_port_id[1],$operation[1],$op_status,$fcAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					}
 				} 
 				elseif ($fcStatusFilter == "Include") {
 
 					if (in_array($nodename."_".$fc_port_id[1], $fcIncludeList)) {
 						echo $nodename."_".$fc_port_id[1].".FCOperationalStatus ".$operation[1]."\n";
-
-						$fcAlert = checkOpStatus($nodename."_".$fc_port_id[1],$operation[1],$op_status,$fcAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($fcStatusCheck == "true") {
+							$fcAlert = checkOpStatus($nodename."_".$fc_port_id[1],$operation[1],$op_status,$fcAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 						
 						// Remove value from array so we know what we haven't found yet
 						$indexFound = array_search($nodename."_".$fc_port_id[1], $fcIncludeList);
@@ -294,7 +309,9 @@
 				elseif ($fcStatusFilter == "Exclude") {
 					if (!in_array($nodename."_".$fc_port_id[1], $fcExcludeList)) {
 						echo $nodename."_".$fc_port_id[1].".FCOperationalStatus ".$operation[1]."\n";
-						$fcAlert = checkOpStatus($nodename."_".$fc_port_id[1],$operation[1],$op_status,$fcAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($fcStatusCheck == "true") {
+							$fcAlert = checkOpStatus($nodename."_".$fc_port_id[1],$operation[1],$op_status,$fcAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 					}
 				}
 			}
@@ -338,14 +355,17 @@
 				// No Filter
 				if($nodeStatusFilter == "None") {
 					echo $apps_temp.".NodeStatus ".$native[1]."\n";
-					$nodeAlert = checkNativeStatus($apps_temp,$native[1],$nat_status,$nodeAlert,$critical_nat_status,$warning_nat_status);
+					if($nodeStatusCheck == "true") {
+						$nodeAlert = checkNativeStatus($apps_temp,$native[1],$nat_status,$nodeAlert,$critical_nat_status,$warning_nat_status);
+					}
 				} 
 				elseif ($nodeStatusFilter == "Include") {
 
 					if (in_array($apps_temp, $nodeIncludeList)) {
 						echo $apps_temp.".NodeStatus ".$native[1]."\n";
-
-						$nodeAlert = checkNativeStatus($apps_temp,$native[1],$nat_status,$nodeAlert,$critical_nat_status,$warning_nat_status);
+						if($nodeStatusCheck == "true") {
+							$nodeAlert = checkNativeStatus($apps_temp,$native[1],$nat_status,$nodeAlert,$critical_nat_status,$warning_nat_status);
+						}
 						
 						// Remove value from array so we know what we haven't found yet
 						$indexFound = array_search($apps_temp, $nodeIncludeList);
@@ -357,7 +377,9 @@
 				elseif ($nodeStatusFilter == "Exclude") {
 					if (!in_array($apps_temp, $nodeExcludeList)) {
 						echo $apps_temp.".NodeStatus ".$native[1]."\n";
-						$nodeAlert = checkNativeStatus($apps_temp,$native[1],$nat_status,$nodeAlert,$critical_nat_status,$warning_nat_status);
+						if($nodeStatusCheck == "true") {
+							$nodeAlert = checkNativeStatus($apps_temp,$native[1],$nat_status,$nodeAlert,$critical_nat_status,$warning_nat_status);
+						}
 					}
 				}
 				
@@ -420,14 +442,17 @@
 				// No Filter
 				if($vdiskStatusFilter == "None") {
 					echo $elementName.".VDOperationalStatus ".$operation[1]."\n";
-					$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					if($vdiskStatusCheck == "true") {
+						$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					}
 				} 
 				elseif ($vdiskStatusFilter == "Include") {
 
 					if (in_array($elementName, $vdiskIncludeList)) {
 						echo $elementName.".VDOperationalStatus ".$operation[1]."\n";
-
-						$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($vdiskStatusCheck == "true") {
+							$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 						
 						// Remove value from array so we know what we haven't found yet
 						$indexFound = array_search($elementName, $vdiskIncludeList);
@@ -439,7 +464,9 @@
 				elseif ($vdiskStatusFilter == "Exclude") {//plui
 					if (!in_array($elementName, $vdiskExcludeList)) {
 						echo $elementName.".VDOperationalStatus ".$operation[1]."\n";
-						$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($vdiskStatusCheck == "true") {
+							$vdiskAlert = checkOpStatus($elementName,$operation[1],$op_status,$vdiskAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 					}
 				}
 			}
@@ -522,7 +549,9 @@
 					echo $apps_temp.".SPTotal ".$total_managed_space."\n";
 					echo $apps_temp.".SPRemaining ".$remaining_managed_space."\n";
 					echo $apps_temp.".SPUsed ".$used_capacity."\n";
-					$spAlert = checkOpStatus($apps_temp,$operation[1],$op_status,$spAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					if($spStatusCheck == "true") {
+						$spAlert = checkOpStatus($apps_temp,$operation[1],$op_status,$spAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+					}
 				} 
 				elseif ($spStatusFilter == "Include") {
 
@@ -532,7 +561,9 @@
 						echo $apps_temp.".SPTotal ".$total_managed_space."\n";
 						echo $apps_temp.".SPRemaining ".$remaining_managed_space."\n";
 						echo $apps_temp.".SPUsed ".$used_capacity."\n";
-						$spAlert = checkOpStatus($apps_temp,$operation[1],$op_status,$spAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($spStatusCheck == "true") {
+							$spAlert = checkOpStatus($apps_temp,$operation[1],$op_status,$spAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 						
 						// Remove value from array so we know what we haven't found yet
 						$indexFound = array_search($apps_temp, $spIncludeList);
@@ -548,7 +579,9 @@
 						echo $apps_temp.".SPTotal ".$total_managed_space."\n";
 						echo $apps_temp.".SPRemaining ".$remaining_managed_space."\n";
 						echo $apps_temp.".SPUsed ".$used_capacity."\n";
-						$spAlert = checkOpStatus($apps_temp,$operation[1],$op_status,$spAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						if($spStatusCheck == "true") {
+							$spAlert = checkOpStatus($apps_temp,$operation[1],$op_status,$spAlert,$critical_op_status,$warning_op_status,$unknown_op_status);
+						}
 					}
 				}
 				
@@ -578,8 +611,7 @@
 		$host_status_cmd_str ="https://$user:$password@$ip:$port/root/ibm:IBMTSSVC_StorageHardwareID";
 		$host_status_result=shell_exec("wbemcli -noverify ei '$host_status_cmd_str'");    
 		//$host_status_result=shell_exec("type testOutput.txt | findstr \"IBMTSSVC_StorageHardwareID\"");  
-		//Debug
-		//$host_status_result=shell_exec("type StorageHardwareID.txt");		
+
 		$hostStatusList = explode("\n",$host_status_result);
 				
 		// Going through all hosts
@@ -633,7 +665,9 @@
 											echo $host_name.".HostStatus 1\n";
 										} else {
 											echo $host_name.".HostStatus 0\n";
-											$hostAlert[] = array($host_name, 2, "inactive");
+											if($hostStatusCheck == "true") {
+												$hostAlert[] = array($host_name, 2, "inactive");
+											}
 										}
 									} 
 									elseif ($hostStatusFilter == "Include") {
@@ -644,7 +678,9 @@
 												echo $host_name.".HostStatus 1\n";
 											} else {
 												echo $host_name.".HostStatus 0\n";
-												$hostAlert[] = array($host_name, 2, "inactive");
+												if($hostStatusCheck == "true") {
+													$hostAlert[] = array($host_name, 2, "inactive");
+												}
 											}
 																				
 											// Remove value from array so we know what we haven't found yet
@@ -660,7 +696,9 @@
 												echo $host_name.".HostStatus 1\n";
 											} else {
 												echo $host_name.".HostStatus 0\n";
-												$hostAlert[] = array($host_name, 2, "inactive");
+												if($hostStatusCheck == "true") {
+													$hostAlert[] = array($host_name, 2, "inactive");
+												}
 											}
 										}
 									}
