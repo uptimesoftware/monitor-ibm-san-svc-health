@@ -4,4 +4,4 @@ inst=`grep pidfile /etc/init.d/uptime_core | head -n 1 | cut -d: -f2 | rev | cut
 MIBDIRS=$inst/mibs
 export MIBDIRS
 
-/usr/local/uptime/apache/bin/php SVC_monitor.php
+/usr/local/uptime/apache/bin/php monitor-ibm-san-svc-health.php
