@@ -1,6 +1,0 @@
-name=IBM SAN SVC Health
-version=1.0
-platforms=linux windows
-description=This monitors connect to an IBM SAN SVC to monitor the status of layers such as nodes, hosts, fibre channel, etc.
-requiresAgentScript=false
-restartCore=false
