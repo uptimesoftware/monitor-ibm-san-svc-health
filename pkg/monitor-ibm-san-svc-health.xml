@@ -488,7 +488,5 @@
             </gui_type>
         </element>
     </elements>
-    <help>This monitor uses CIM to collect the statuses and metrics of various 
-	components of an IBM SAN, such as backend controller, node and storage pool.
-    </help>
+    <help>This monitor uses CIM to collect the statuses and metrics of various components of an IBM SAN, such as backend controller, node and storage pool.</help>
 </uptime>
